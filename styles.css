@@ -1,0 +1,164 @@
+:root {
+  --color-bg: #000000;
+  --color-bg-secondary: #313131;
+  --color-text: #E7E7E7;
+  --color-primary: #FACC15;
+  --color-primary-hover: #ffe670;
+  --color-text-gray: #A5A5A5;
+
+  --font-base: 'Geist', sans-serif;
+  --font-size-notes: 0.625rem; 
+  --font-size-sm-mobile: 0.875rem; 
+  --font-size-base-mobile: 1.125rem;
+  --font-size-lg-mobile: clamp(1rem, 5.5vw, 1.563rem);
+  --font-size-xl-mobile: clamp(1.5rem, 10vw, 3.125rem);
+
+  --navbar-height: 80px;
+  --radius-base: 10px;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-weight: 400;
+  src: url('assets/fonts/Geist-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-weight: 700;
+  src: url('assets/fonts/Geist-Bold.woff2') format('woff2');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+.nav-bar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 10;
+  background: var(--color-bg);
+}
+
+.nav-bar-container img {
+  display: block;
+}
+
+.intro-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* topo do pai */
+  align-items: center; /* centralizado horizontalmente */
+  height: calc(100vh - var(--navbar-height)); /* altura total menos navbar */
+  margin-top: var(--navbar-height); /* empurra a intro-container abaixo da navbar */
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  z-index: 1;
+}
+
+.heading1-container {
+  position: absolute; /* mantém fluxo do documento */
+  top: 5%;
+  z-index: 2; /* acima do vídeo */
+  border: 5px solid var(--color-text);
+  color: var(--color-text);
+  background: rgba(0,0,0,0.3); /* opcional: contraste sobre o vídeo */
+  width:85%;
+  height:80%;
+  border-radius: var(--radius-base);
+  display: flex;
+  flex-direction: column;       /* empilha verticalmente */
+  justify-content: flex-end;     /* move todo o bloco para o fundo do container */
+  align-items: flex-start;       /* alinha conteúdo à esquerda */
+  padding: 1.2rem;  
+}
+
+h1{
+  font-size: var(--font-size-xl-mobile);
+  text-align: left;
+  letter-spacing: 0.2rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+
+h2 {
+  font-size: var(--font-size-base-mobile);
+  margin: 0;
+  letter-spacing: 0.05rem;
+}
+
+h3{
+  font-size: var(--font-size-lg-mobile);
+  text-align: left;
+  letter-spacing: 0.1rem;
+  font-weight: 400;
+  color:var(--color-text-gray);
+}
+
+.reveal, .reveal-on-load {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.active, .reveal-on-load.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+main {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: fit-content; /* garante que cresce conforme o conteúdo */
+  padding: 2rem 1rem;      /* espaço interno para respirar */
+  z-index: 1;
+  background: var(--color-bg);
+}
+
+.form-container{
+  display: flex;
+  flex-direction: column;   
+  gap:0.4rem;
+}
+
+.form-container>label{
+  color: var(--color-text-gray);
+  font-size: var(--font-size-sm-mobile);
+}
+
+.form-container>select{
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  padding: 0.6rem 0.4rem;
+  border-radius: var(--radius-base);
+}
+.title-filters-container{
+  display: flex;
+  flex-direction: column;   
+  gap:0.8rem;
+  width:85vw;
+  margin:auto;
+}

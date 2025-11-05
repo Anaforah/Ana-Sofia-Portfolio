@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="card.css">
+  <title>Ana Sofia's Portfolio</title>
+</head>
+<body>
+  <header class="nav-bar-container">
+    <img src="assets/images/logo.svg" alt="Logo" width="50px" height="auto">
+    <nav>
+      <ul>
+        <li>Work</li>
+        <li>Contacts</li>
+      </ul>
+    </nav>
+  </header>
+  <div class="intro-container">
+    <video autoplay muted loop playsinline>
+      <source src="assets/video/mobile-background-video.webm" type="video/webm">
+      <source src="assets/video/mobile-background-video.mp4" type="video/mp4">
+    </video>
+
+    <div class="heading1-container reveal-on-load">
+        <h3>Hi, I'm Ana Sofia!</h3>
+      <h1>Creative Design, Thoughtful Interfaces</h1>
+    </div>
+  </div>
+
+  <main>
+    <div class="title-filters-container">
+    <h3 class="reveal">Work</h3>
+      <form class="form-container reveal">
+        <label for="Interest">Field of Interest</label>
+        <select id="Interest" name="Interest" required>
+          <option value="" disabled selected hidden>Select your interest...</option>
+        </select>
+      </form>
+    </div>
+      <div class="card-grid">
+</div>
+  </main>
+  <footer></footer>
+  <script src="card.js" defer></script>
+  <script src="scrollreveal.js"></script>
+  <script src="server.js"></script>
+</body>
+</html>
