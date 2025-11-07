@@ -13,12 +13,18 @@
   <header id="head">
     <div class="nav-bar-container">
     <img src="assets/images/logo.svg" alt="Logo" width="50px" height="auto">
-    <nav>
+    <div class="menu-container">
+      <button class="hamburger" aria-label="Abrir menu">
+        &#9776;
+      </button>
+
+    <nav class="nav-bar">
       <ul>
-        <li>Work</li>
-        <li>Contacts</li>
+        <li><a class="nav-a" href="#work">Work</a></li>
+        <li><a class="nav-a" href="#contacts">Contacts</a></li>
       </ul>
     </nav>
+    </div>
   </div>
   <div class="intro-container">
     <video autoplay muted loop playsinline>
@@ -55,5 +61,6 @@
   <script src="scrollreveal.js"></script>
   <script src="server.js"></script>
   <script src="buttonscroll.js"></script>
+  <script src="menuhamburguer.js"></script>
 </body>
 </html>
