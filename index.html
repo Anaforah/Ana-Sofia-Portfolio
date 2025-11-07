@@ -10,7 +10,8 @@
   <title>Ana Sofia's Portfolio</title>
 </head>
 <body>
-  <header class="nav-bar-container">
+  <header id="head">
+    <div class="nav-bar-container">
     <img src="assets/images/logo.svg" alt="Logo" width="50px" height="auto">
     <nav>
       <ul>
@@ -18,7 +19,7 @@
         <li>Contacts</li>
       </ul>
     </nav>
-  </header>
+  </div>
   <div class="intro-container">
     <video autoplay muted loop playsinline>
       <source src="assets/video/mobile-background-video.webm" type="video/webm">
@@ -29,9 +30,14 @@
         <h3>Hi, I'm Ana Sofia!</h3>
       <h1>Creative Design, Thoughtful Interfaces</h1>
     </div>
+  </header>
+    <div class="scroll-button-container">
+      <button class="scrollDown" aria-label="Down">↓</button>
+      <button class="scrollUp" aria-label="Up">↑</button>
+    </div>
   </div>
 
-  <main>
+  <main id="work">
     <div class="title-filters-container">
     <h3 class="reveal">Work</h3>
       <form class="form-container reveal">
@@ -44,9 +50,10 @@
       <div class="card-grid">
 </div>
   </main>
-  <footer></footer>
+  <footer id="contacts"></footer>
   <script src="card.js" defer></script>
   <script src="scrollreveal.js"></script>
   <script src="server.js"></script>
+  <script src="buttonscroll.js"></script>
 </body>
 </html>
