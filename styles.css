@@ -135,7 +135,7 @@ main {
   min-height: fit-content;
   padding: 2rem 1rem;
   z-index: 1;
-  background: var(--color-bg);
+  height:calc(100vh - var(--navbar-height));
 }
 
 .form-container{
@@ -191,9 +191,40 @@ main {
   display: none;
 }
 
+.horizontal-scroll-container{
+  display: flex;
+  flex-direction: row;
+  gap:0.8rem;
+}
+
+.horizontal-scroll-container > button {
+  all: unset;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  border-radius: var(--radius-base);
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: var(--font-size-sm-mobile);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9998;
+  box-shadow: 0 0 15px rgba(231, 231, 231, 0.3);
+}
+
 .scroll-button-container button.show {
   display: inline-flex;
 }
+
+.horizontal-scroll-container button {
+  opacity: 0;
+}
+
+.horizontal-scroll-container button.show {
+  opacity: 1;
+}
+
 
 .hamburger {
   display: block;
@@ -249,4 +280,10 @@ li{
   all: unset;
   display:block;
   padding:0.625rem;
+}
+
+.form-controllers-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }

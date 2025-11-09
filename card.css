@@ -1,3 +1,17 @@
+.card-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem;
+  scrollbar-width: none;
+}
+
+.card-grid::-webkit-scrollbar {
+  display: none;
+}
+
 .card {
   background: var(--color-bg-secondary);
   border: 2px solid #2e2e2e;
@@ -6,12 +20,19 @@
   color: var(--color-text);
   font-family: 'Geist', sans-serif;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  width: 85vw;
+  min-width: 300px;
   max-width: 400px;
-  margin: 2rem auto;
+  margin: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  flex: 0 0 85%;
+  scroll-snap-align: start;
+}
+
+.card-grid::after {
+  content: '';
+  flex: 0 0 10%;
 }
 
 .card:hover {

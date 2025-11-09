@@ -1,5 +1,8 @@
 const scrollUpBtn = document.querySelector(".scrollUp");
 const scrollDownBtn = document.querySelector(".scrollDown");
+const scrollContainer = document.querySelector(".card-grid");
+const scrollLeftBtn = document.querySelector(".scrollLeft");
+const scrollRightBtn = document.querySelector(".scrollRight");
 
 const header = document.querySelector("header");
 const main = document.querySelector("main");
@@ -33,4 +36,41 @@ scrollUpBtn.addEventListener("click", () => {
 
 scrollDownBtn.addEventListener("click", () => {
   window.scrollTo({ top: footer.offsetTop, behavior: "smooth" });
+});
+
+const scrollAmount = () => scrollContainer.clientWidth * 0.9;
+
+scrollLeftBtn.addEventListener("click", () => {
+  scrollContainer.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+});
+
+scrollRightBtn.addEventListener("click", () => {
+  scrollContainer.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+});
+
+function toggleHorizontalButtons() {
+  const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+
+  if (maxScrollLeft > 5) {
+    scrollRightBtn.classList.add("show");
+  } else {
+    scrollRightBtn.classList.remove("show");
+  }
+
+  if (scrollContainer.scrollLeft <= 0) {
+    scrollLeftBtn.classList.remove("show");
+  } else {
+    scrollLeftBtn.classList.add("show");
+  }
+}
+
+scrollContainer.addEventListener("scroll", toggleHorizontalButtons);
+window.addEventListener("resize", toggleHorizontalButtons);
+
+window.addEventListener("load", () => {
+  setTimeout(toggleHorizontalButtons, 200);
+});
+
+scrollContainer.querySelectorAll("img").forEach(img => {
+  img.addEventListener("load", toggleHorizontalButtons);
 });
