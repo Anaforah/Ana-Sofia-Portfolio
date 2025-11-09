@@ -1,76 +1,70 @@
-const scrollUpBtn = document.querySelector(".scrollUp");
-const scrollDownBtn = document.querySelector(".scrollDown");
+const elements = ["scrollUp", "scrollDown", "scrollLeft", "scrollRight"].map((cls) =>
+    document.querySelector(`.${cls}`)
+);
+const [scrollUpBtn, scrollDownBtn, scrollLeftBtn, scrollRightBtn] = elements;
+
 const scrollContainer = document.querySelector(".card-grid");
-const scrollLeftBtn = document.querySelector(".scrollLeft");
-const scrollRightBtn = document.querySelector(".scrollRight");
+const sections = ["header", "main", "footer"].map((sel) => document.querySelector(sel));
+const [header, main, footer] = sections;
 
-const header = document.querySelector("header");
-const main = document.querySelector("main");
-const footer = document.querySelector("footer");
+const OFFSET = 80;
 
-const toggleScrollButtons = () => {
-  const scrollY = window.scrollY;
-  const headerBottom = header.offsetTop + header.offsetHeight;
-  const mainBottom = main.offsetTop + main.offsetHeight;
+const toggle = (el, condition) => el.classList.toggle("show", condition);
 
-  if (scrollY < headerBottom) {
-    scrollUpBtn.classList.remove("show");
-    scrollDownBtn.classList.add("show");
-  }
-  else if (scrollY >= mainBottom) {
-    scrollUpBtn.classList.add("show");
-    scrollDownBtn.classList.remove("show");
-  }
-  else {
-    scrollUpBtn.classList.add("show");
-    scrollDownBtn.classList.add("show");
-  }
+const getScrollState = () => {
+    const scrollY = window.scrollY;
+    const mainTop = main.offsetTop - OFFSET;
+    const footerTop = footer.offsetTop - OFFSET;
+
+    return scrollY < mainTop ? "header" : scrollY < footerTop - window.innerHeight / 2 ? "main" : "footer";
 };
 
-window.addEventListener("scroll", toggleScrollButtons);
+const toggleScrollButtons = () => {
+    const state = getScrollState();
+    toggle(scrollUpBtn, state !== "header");
+    toggle(scrollDownBtn, state !== "footer");
+};
+
+["scroll", "resize"].forEach((event) => window.addEventListener(event, toggleScrollButtons));
 document.addEventListener("DOMContentLoaded", toggleScrollButtons);
 
+const scrollToSection = (section) => window.scrollTo({top: section.offsetTop - OFFSET, behavior: "smooth"});
+
 scrollUpBtn.addEventListener("click", () => {
-  window.scrollTo({ top: header.offsetTop, behavior: "smooth" });
+    const state = getScrollState();
+    if (state === "footer") {
+        scrollToSection(main);
+    } else {
+        scrollToSection(header);
+    }
 });
 
 scrollDownBtn.addEventListener("click", () => {
-  window.scrollTo({ top: footer.offsetTop, behavior: "smooth" });
+    const state = getScrollState();
+    if (state === "header") {
+        scrollToSection(main);
+    } else {
+        scrollToSection(footer);
+    }
 });
 
-const scrollAmount = () => scrollContainer.clientWidth * 0.9;
+const scrollByAmount = (dir) =>
+    scrollContainer.scrollBy({
+        left: dir * scrollContainer.clientWidth * 0.9,
+        behavior: "smooth",
+    });
 
-scrollLeftBtn.addEventListener("click", () => {
-  scrollContainer.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
-});
+scrollLeftBtn.addEventListener("click", () => scrollByAmount(-1));
+scrollRightBtn.addEventListener("click", () => scrollByAmount(1));
 
-scrollRightBtn.addEventListener("click", () => {
-  scrollContainer.scrollBy({ left: scrollAmount(), behavior: "smooth" });
-});
+const updateHorizontalButtons = () => {
+    const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+    toggle(scrollLeftBtn, scrollContainer.scrollLeft > 0);
+    toggle(scrollRightBtn, scrollContainer.scrollLeft < maxScrollLeft - 5);
+};
 
-function toggleHorizontalButtons() {
-  const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+scrollContainer.addEventListener("scroll", updateHorizontalButtons);
+scrollContainer.addEventListener("resize", updateHorizontalButtons);
 
-  if (maxScrollLeft > 5) {
-    scrollRightBtn.classList.add("show");
-  } else {
-    scrollRightBtn.classList.remove("show");
-  }
-
-  if (scrollContainer.scrollLeft <= 0) {
-    scrollLeftBtn.classList.remove("show");
-  } else {
-    scrollLeftBtn.classList.add("show");
-  }
-}
-
-scrollContainer.addEventListener("scroll", toggleHorizontalButtons);
-window.addEventListener("resize", toggleHorizontalButtons);
-
-window.addEventListener("load", () => {
-  setTimeout(toggleHorizontalButtons, 200);
-});
-
-scrollContainer.querySelectorAll("img").forEach(img => {
-  img.addEventListener("load", toggleHorizontalButtons);
-});
+window.addEventListener("load", () => setTimeout(updateHorizontalButtons, 200));
+scrollContainer.querySelectorAll("img").forEach((img) => img.addEventListener("load", updateHorizontalButtons));
