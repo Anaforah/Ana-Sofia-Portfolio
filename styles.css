@@ -7,7 +7,7 @@
   --color-text-gray: #A5A5A5;
 
   --font-base: 'Geist', sans-serif;
-  --font-size-notes: 0.625rem; 
+
   --font-size-sm-mobile: 0.875rem; 
   --font-size-base-mobile: 1.125rem;
   --font-size-lg-mobile: clamp(1rem, 5.5vw, 1.563rem);
@@ -15,6 +15,24 @@
 
   --navbar-height: 80px;
   --radius-base: 10px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    
+    --font-size-sm-mobile: 1rem; 
+    --font-size-base-mobile: 1.25rem;
+    --font-size-lg-mobile: clamp(1.5rem, 5vw, 2.188rem);
+    --font-size-xl-mobile: clamp(2rem, 10vw, 3.75rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --font-size-base-mobile: 1.563rem;
+    --font-size-lg-mobile: clamp(1.5rem, 5vw, 2.5rem);
+    --font-size-xl-mobile: clamp(2rem, 8vw, 5rem);
+  }
 }
 
 @font-face {
