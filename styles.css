@@ -8,6 +8,7 @@
 
   --font-base: 'Geist', sans-serif;
 
+  --font-size-notes: 0.625rem;
   --font-size-sm-mobile: 0.875rem; 
   --font-size-base-mobile: 1.125rem;
   --font-size-lg-mobile: clamp(1rem, 5.5vw, 1.563rem);
@@ -294,6 +295,7 @@ main {
   font-size: var(--font-size-xl-mobile);
 }
 
+
 li{
   all: unset;
   display:block;
@@ -357,4 +359,51 @@ footer{
 .contact-icon {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+@media (min-width: 1200px) {
+  .contact-links-container{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+  .contact-links-container a{
+    display: inline-flex;
+    align-items: center;
+  font-size: var(--font-size-base-mobile);
+}
+.contact-links-container img{
+  width: 3rem;
+}
+
+  .nav-bar{
+    transform: none;
+    background: transparent;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    z-index: 9999;
+    pointer-events: auto;
+    gap:1rem;
+  }
+  .hamburger {
+    display: none;
+}
+.nav-bar ul {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 0;
+}
+.nav-bar a {
+  font-size: var(--font-size-base-mobile);
+  color: var(--color-text);
+}
+.nav-bar a:hover{
+color: var(--color-primary-hover);
+}
+
 }

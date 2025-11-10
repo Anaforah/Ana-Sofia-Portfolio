@@ -71,7 +71,7 @@ fetch(API_URL)
         window.history.pushState({}, "", newUrl);
 
         renderCards(selected);
-        checkReveals();
+        updateRevealElements();
       });
     }
   });
