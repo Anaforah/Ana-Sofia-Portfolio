@@ -1,91 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="card.css">
-  <title>Ana Sofia's Portfolio</title>
-</head>
-<body>
-  <header id="head">
-    <div class="nav-bar-container">
-    <img src="assets/images/logo.svg" alt="Logo" width="50px" height="auto">
-    <div class="menu-container">
-      <button class="hamburger" aria-label="Abrir menu">
-        &#9776;
-      </button>
-    <nav class="nav-bar">
-      <ul>
-        <li><a class="nav-a" href="#work">Work</a></li>
-        <li><a class="nav-a" href="#contacts">Contacts</a></li>
-      </ul>
-    </nav>
-    </div>
-  </div>
-  <div class="intro-container">
-    <video autoplay muted loop playsinline>
-      <source src="assets/video/mobile-background-video.webm" type="video/webm" media="(max-width: 767px)">
-      <source src="assets/video/mobile-background-video.mp4" type="video/mp4" media="(max-width: 767px)">
-      <source src="assets/video/tablet-background-video.webm" type="video/webm" media="(min-width: 768px) and (max-width: 1023px)">
-      <source src="assets/video/tablet-background-video.mp4" type="video/mp4" media="(min-width: 768px) and (max-width: 1023px)">
-      <source src="assets/video/desktop-background-video.webm" type="video/webm">
-      <source src="assets/video/desktop-background-video.mp4" type="video/mp4" >
-      Your browser does not support the video tag.
-    </video>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="card.css" />
 
-    <div class="heading1-container reveal-on-load reveal">
-        <h3>Hi, I'm Ana Sofia!</h3>
-      <h1>Creative Design, Thoughtful Interfaces</h1>
-    </div>
-  </header>
-    <div class="scroll-button-container">
-      <button class="scrollDown" aria-label="Down">↓</button>
-      <button class="scrollUp" aria-label="Up">↑</button>
-    </div>
-  </div>
+        <title>Ana Sofia's Portfolio</title>
+    </head>
+    <body>
+        <header id="head">
+            <div class="nav-bar-container">
+                <img src="assets/images/logo.svg" alt="Logo" width="50px" height="auto" />
+                <div class="menu-container">
+                    <button class="hamburger" aria-label="Abrir menu">&#9776;</button>
+                    <nav class="nav-bar">
+                        <ul>
+                            <li><a class="nav-a" href="#work">Work</a></li>
+                            <li><a class="nav-a" href="#contacts">Contacts</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="intro-container">
+                <video autoplay muted loop playsinline>
+                    <source
+                        src="assets/video/mobile-background-video.webm"
+                        type="video/webm"
+                        media="(max-width: 767px)"
+                    />
+                    <source
+                        src="assets/video/mobile-background-video.mp4"
+                        type="video/mp4"
+                        media="(max-width: 767px)"
+                    />
+                    <source
+                        src="assets/video/tablet-background-video.webm"
+                        type="video/webm"
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                    />
+                    <source
+                        src="assets/video/tablet-background-video.mp4"
+                        type="video/mp4"
+                        media="(min-width: 768px) and (max-width: 1023px)"
+                    />
+                    <source src="assets/video/desktop-background-video.webm" type="video/webm" />
+                    <source src="assets/video/desktop-background-video.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
 
-  <main id="work">
-    <div class="title-filters-container">
-    <h3 class="reveal">Work</h3>
-    <div class="form-controllers-container">
-      <form class="form-container reveal">
-        <label for="Interest">Field of Interest</label>
-        <select id="Interest" name="Interest" required>
-          <option value="" disabled selected hidden>Select your interest...</option>
-        </select>
-      </form>
-      <div class="horizontal-scroll-container reveal">
-        <button class="scrollLeft" aria-label="Left">←</button>
-        <button class="scrollRight" aria-label="Right">→</button>
-      </div>
-    </div>
-    </div>
-      <div class="card-grid reveal">
-</div>
-  </main>
-  <footer id="contacts" class="reveal">
-    <h1>Don’t be shy,<br>feel free to contact me</h1>
-    <div class="contact-links-container">
-      <a href="mailto:example@example.com">
-        <img src="assets/images/mail.svg" alt="Email" class="contact-icon" />
-        <span>Email</span>
-      </a>
-      <a href="https://www.behance.net/anaalmeida127" target="_blank" aria-label="Behance">
-        <img src="assets/images/behance.svg" alt="Behance" class="contact-icon" />
-        <span>Behance</span>
-      </a>
-      <a href="https://github.com/Anaforah" target="_blank" aria-label="Github">
-        <img src="assets/images/github.svg" alt="Github" class="contact-icon" />
-        <span>Github</span>
-      </a>
-    </div>
-  </footer>
-  <script src="card.js" defer></script>
-  <script src="server.js"></script>
-  <script src="buttonscroll.js"></script>
-  <script src="menuhamburguer.js"></script>
-</body>
+                <div class="heading1-container reveal-on-load reveal">
+                    <h3>Hi, I'm Ana Sofia!</h3>
+                    <h1>Creative Design, Thoughtful Interfaces</h1>
+                </div>
+            </div>
+        </header>
+        <div class="scroll-button-container">
+            <button class="scrollDown" aria-label="Down">↓</button>
+            <button class="scrollUp" aria-label="Up">↑</button>
+        </div>
+
+        <main id="work">
+            <div class="title-filters-container">
+                <h3 class="reveal">Work</h3>
+                <div class="form-controllers-container">
+                    <form class="form-container reveal">
+                        <label for="Interest">Field of Interest</label>
+                        <select id="Interest" name="Interest" required>
+                            <option value="" disabled selected hidden>Select your interest...</option>
+                        </select>
+                    </form>
+                    <div class="horizontal-scroll-container reveal">
+                        <button class="scrollLeft" aria-label="Left">←</button>
+                        <button class="scrollRight" aria-label="Right">→</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-grid reveal"></div>
+        </main>
+        <footer id="contacts" class="reveal">
+            <h1>Don’t be shy,<br />feel free to contact me</h1>
+            <div class="contact-links-container">
+                <a href="mailto:example@example.com">
+                    <img src="assets/images/mail.svg" alt="Email" class="contact-icon" />
+                    <span>Email</span>
+                </a>
+                <a href="https://www.behance.net/anaalmeida127" target="_blank" aria-label="Behance">
+                    <img src="assets/images/behance.svg" alt="Behance" class="contact-icon" />
+                    <span>Behance</span>
+                </a>
+                <a href="https://github.com/Anaforah" target="_blank" aria-label="Github">
+                    <img src="assets/images/github.svg" alt="Github" class="contact-icon" />
+                    <span>Github</span>
+                </a>
+            </div>
+        </footer>
+        <script src="card.js" defer></script>
+        <script src="server.js"></script>
+        <script src="buttonscroll.js"></script>
+        <script src="menuhamburguer.js"></script>
+    </body>
 </html>

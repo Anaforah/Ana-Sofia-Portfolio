@@ -7,8 +7,8 @@ const scrollContainer = document.querySelector(".card-grid");
 const sections = ["header", "main", "footer"].map((sel) => document.querySelector(sel));
 const [header, main, footer] = sections;
 
-const revealElements = document.querySelectorAll('.reveal');
-const revealOnLoadElements = document.querySelectorAll('.reveal-on-load');
+const revealElements = document.querySelectorAll(".reveal");
+const revealOnLoadElements = document.querySelectorAll(".reveal-on-load");
 
 const OFFSET = 80;
 
@@ -65,24 +65,24 @@ window.addEventListener("load", () => setTimeout(updateHorizontalButtons, 200));
 scrollContainer.querySelectorAll("img").forEach((img) => img.addEventListener("load", updateHorizontalButtons));
 
 const isInViewport = (el, triggerFactor = 0.85) => {
-  const rect = el.getBoundingClientRect();
-  const triggerPoint = window.innerHeight * triggerFactor;
-  return rect.top < triggerPoint && rect.bottom > 0;
+    const rect = el.getBoundingClientRect();
+    const triggerPoint = window.innerHeight * triggerFactor;
+    return rect.top < triggerPoint && rect.bottom > 0;
 };
 
 const updateRevealElements = () => {
-  const revealElements = document.querySelectorAll('.reveal'); 
-  revealElements.forEach(el => el.classList.toggle('active', isInViewport(el)));
+    const revealElements = document.querySelectorAll(".reveal");
+    revealElements.forEach((el) => el.classList.toggle("active", isInViewport(el)));
 };
 
 const activateOnLoadElements = () => {
-  setTimeout(() => {
-    revealOnLoadElements.forEach(el => el.classList.add('active'));
-  }, 200);
+    setTimeout(() => {
+        revealOnLoadElements.forEach((el) => el.classList.add("active"));
+    }, 200);
 };
 
-window.addEventListener('scroll', updateRevealElements);
-window.addEventListener('load', () => {
-  updateRevealElements();
-  activateOnLoadElements();
+window.addEventListener("scroll", updateRevealElements);
+window.addEventListener("load", () => {
+    updateRevealElements();
+    activateOnLoadElements();
 });
