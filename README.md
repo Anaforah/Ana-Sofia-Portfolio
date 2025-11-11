@@ -21,5 +21,5 @@ This is my personal portfolio website. The website features a modern, interactiv
 - **card.css**: Styles specifically for the project cards.
 
 ## Usage
-1. Visit the website: --
+1. Visit the website: https://anaforah.github.io/Ana-Sofia-Portfolio/
 
