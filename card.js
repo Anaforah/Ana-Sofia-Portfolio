@@ -4,40 +4,40 @@ class NewCard extends HTMLElement {
     }
 
     constructor() {
-        super();
+        super()
 
-        this.shadow = this.attachShadow({mode: "open"});
+        this.shadow = this.attachShadow({mode: "open"})
 
-        this.wrapper = document.createElement("article");
-        this.wrapper.classList.add("card");
+        this.wrapper = document.createElement("article")
+        this.wrapper.classList.add("card")
 
-        const cardCSS = document.createElement("link");
-        cardCSS.rel = "stylesheet";
-        cardCSS.href = "card.css";
+        const cardCSS = document.createElement("link")
+        cardCSS.rel = "stylesheet"
+        cardCSS.href = "card.css"
 
-        this.shadow.append(cardCSS, this.wrapper);
+        this.shadow.append(cardCSS, this.wrapper)
     }
 
     connectedCallback() {
-        this.render();
+        this.render()
     }
 
     attributeChangedCallback() {
-        if (this.isConnected) this.render();
+        if (this.isConnected) this.render()
     }
 
     render() {
-        const imgSrc = this.getAttribute("img") || "";
-        const title = this.getAttribute("title") || "";
+        const imgSrc = this.getAttribute("img") || ""
+        const title = this.getAttribute("title") || ""
         const tags = (this.getAttribute("tags") || "")
         .split(",")
         .map((t) => t.trim())
-        .filter(Boolean);
-        const description = this.getAttribute("description") || "";
+        .filter(Boolean)
+        const description = this.getAttribute("description") || ""
         const link1 = this.getAttribute("link1") || "";
-        const link1Text = this.getAttribute("link1-text") || "";
+        const link1Text = this.getAttribute("link1-text") || ""
         const link2 = this.getAttribute("link2") || "";
-        const link2Text = this.getAttribute("link2-text") || "";
+        const link2Text = this.getAttribute("link2-text") || ""
 
         if (!this.wrapper) return;
 
@@ -62,4 +62,4 @@ class NewCard extends HTMLElement {
     }
 }
 
-customElements.define("new-card", NewCard);
+customElements.define("new-card", NewCard)

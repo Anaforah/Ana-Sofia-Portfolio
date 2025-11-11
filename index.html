@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="text-light">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,16 +10,16 @@
 
         <title>Ana Sofia's Portfolio</title>
     </head>
-    <body>
+    <body class="text-light">
         <header id="head">
             <div class="nav-bar-container">
                 <img src="assets/images/logo.svg" alt="Logo" width="50px" height="auto" />
                 <div class="menu-container">
-                    <button class="hamburger" aria-label="Abrir menu">&#9776;</button>
+                    <button class="hamburger text-light" aria-label="Abrir menu">&#9776;</button>
                     <nav class="nav-bar">
                         <ul>
-                            <li><a class="nav-a" href="#work">Work</a></li>
-                            <li><a class="nav-a" href="#contacts">Contacts</a></li>
+                            <li><a class="nav-a text-light" href="#work">Work</a></li>
+                            <li><a class="nav-a text-light" href="#contacts">Contacts</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -51,15 +51,15 @@
                     Your browser does not support the video tag.
                 </video>
 
-                <div class="heading1-container reveal-on-load reveal">
+                <div class="heading1-container text-light rounded reveal-on-load reveal">
                     <h3>Hi, I'm Ana Sofia!</h3>
                     <h1>Creative Design, Thoughtful Interfaces</h1>
                 </div>
             </div>
         </header>
         <div class="scroll-button-container">
-            <button class="scrollDown" aria-label="Down">↓</button>
-            <button class="scrollUp" aria-label="Up">↑</button>
+            <button class="scrollDown bg-secondary text-light rounded shadow" aria-label="Down">↓</button>
+            <button class="scrollUp bg-secondary text-light rounded shadow" aria-label="Up">↑</button>
         </div>
 
         <main id="work">
@@ -68,13 +68,13 @@
                 <div class="form-controllers-container">
                     <form class="form-container reveal">
                         <label for="Interest">Field of Interest</label>
-                        <select id="Interest" name="Interest" required>
+                        <select id="Interest" name="Interest" class="bg-secondary text-light rounded" required>
                             <option value="" disabled selected hidden>Select your interest...</option>
                         </select>
                     </form>
                     <div class="horizontal-scroll-container reveal">
-                        <button class="scrollLeft" aria-label="Left">←</button>
-                        <button class="scrollRight" aria-label="Right">→</button>
+                        <button class="scrollLeft bg-secondary text-light rounded shadow" aria-label="Left">←</button>
+                        <button class="scrollRight bg-secondary text-light rounded shadow" aria-label="Right">→</button>
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
             </div>
         </footer>
         <script src="card.js" defer></script>
-        <script src="server.js"></script>
+        <script src="fetch.js"></script>
         <script src="buttonscroll.js"></script>
         <script src="menuhamburguer.js"></script>
     </body>
