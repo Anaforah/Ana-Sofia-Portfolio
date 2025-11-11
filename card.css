@@ -4,6 +4,7 @@
     gap: 1rem;
     padding: 1rem;
     overflow-y: hidden;
+    overflow-x: auto;
     scrollbar-width: none;
 }
 
@@ -19,6 +20,7 @@
     min-width: 300px;
     max-width: 400px;
     margin: 0;
+    overflow: hidden;
     border: 2px solid var(--color-bg-secondary);
     border-radius: var(--radius-base);
     color: var(--color-text);
@@ -40,7 +42,8 @@
 
 .card img {
     width: 100%;
-    height: auto;
+    height: clamp(150px, 25vw, 250px);
+    object-fit: cover;
     border-bottom: 2px solid var(--color-bg-secondary);
     display: block;
 }

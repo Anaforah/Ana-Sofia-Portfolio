@@ -5,6 +5,7 @@
   --color-primary: #facc15;
   --color-primary-hover: #ffe670;
   --color-text-gray: #a5a5a5;
+  --shadow-color: rgba(231, 231, 231, 0.3);
 
   --font-base: "Geist", sans-serif;
 
@@ -41,7 +42,19 @@ body {
   background-color: var(--color-bg);
   overflow-x: hidden;
   font-family: var(--font-base);
+}
+
+.bg-secondary {
+  background-color: var(--color-bg-secondary);
+}
+.text-light {
   color: var(--color-text);
+}
+.rounded {
+  border-radius: var(--radius-base);
+}
+.shadow {
+  box-shadow: 0 0 15px var(--shadow-color);
 }
 
 .nav-bar-container {
@@ -92,8 +105,6 @@ video {
   height: 80%;
   z-index: 2;
   border: 5px solid var(--color-text);
-  color: var(--color-text);
-  border-radius: var(--radius-base);
 }
 
 h1,
@@ -138,7 +149,7 @@ main {
   display: block;
   z-index: 1;
   position: relative;
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   width: 100%;
   min-height: fit-content;
   height: calc(100vh - var(--navbar-height));
@@ -148,6 +159,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  width: clamp(200px, 20%, 600px);
 }
 
 .form-container > label {
@@ -156,12 +168,13 @@ main {
 }
 
 .form-container > select {
+  all:unset;
   background-color: var(--color-bg-secondary);
-  all: unset;
   color: var(--color-text);
-  padding: 0.6rem 0.4rem;
   border-radius: var(--radius-base);
+  padding: 0.6rem 0.4rem;
 }
+
 .title-filters-container {
   display: flex;
   flex-direction: column;
@@ -183,16 +196,16 @@ main {
 .scroll-button-container > button,
 .horizontal-scroll-container > button {
   all: unset;
-  background-color: var(--color-bg-secondary);
-  color: var(--color-text);
-  border-radius: var(--radius-base);
   font-size: var(--font-size-sm-mobile);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 9998;
-  box-shadow: 0 0 15px rgba(231, 231, 231, 0.3);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  border-radius: var(--radius-base);
+  box-shadow: 0 0 15px var(--shadow-color);
 }
 
 .scroll-button-container > button {
@@ -203,6 +216,9 @@ main {
 .scroll-button-container > button {
   width: 2.5rem;
   height: 2.5rem;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  border-radius: var(--radius-base);
 }
 
 .horizontal-scroll-container {
@@ -268,7 +284,7 @@ main {
 .nav-a {
   padding-top: 2rem;
   all: unset;
-  color: var(--color-bg);
+  color: var(--color-text);
   font-size: var(--font-size-xl-mobile);
 }
 
@@ -391,7 +407,6 @@ footer {
   }
   .nav-bar a {
     font-size: var(--font-size-base-mobile);
-    color: var(--color-text);
   }
   .nav-bar a:hover {
     color: var(--color-primary-hover);

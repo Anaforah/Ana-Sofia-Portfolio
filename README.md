@@ -5,7 +5,7 @@ This is my personal portfolio website. The website features a modern, interactiv
 
 ## Features
 - **Project Showcase**: Displays projects fetched from an API with lazy loading and horizontal scrolling.
-- **Filter by Interest**: Users can filter projects by their field of interest using a dropdown menu.
+- **Filter by Scope**: Users can filter projects by their prefered scope using a dropdown menu.
 - **Custom Cards**: Each project is displayed using a custom `<new-card>` web component with image, title, tags, description, and external links.
 - **Animated Reveal**: Elements appear with smooth reveal animations as the user scrolls.
 - **Smooth Scroll Buttons**: Navigation buttons for scrolling vertically between sections and horizontally through project cards.
