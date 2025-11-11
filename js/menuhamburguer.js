@@ -8,6 +8,7 @@ function toggleMenu() {
 
     hamburger.innerHTML = isOpen ? "&times;" : "&#9776;"
     hamburger.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu")
+    hamburger.classList.toggle("active", isOpen)
 }
 
 hamburger.addEventListener("click", toggleMenu)
