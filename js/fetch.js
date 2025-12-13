@@ -1,9 +1,11 @@
 const API_URL = "https://projects-api-2.vercel.app/api/projects";
 const select = document.querySelector("#Scope");
+const toolSelect = document.querySelector("#Topic");
 const container = document.querySelector(".card-grid");
 const BATCH_SIZE = 6;
 let currentIndex = 0;
 let currentFilter = "";
+let currentTagFilter = "";
 let isLoading = false;
 
 fetch(API_URL)
@@ -13,6 +15,14 @@ fetch(API_URL)
 
     const descriptions = [
       ...new Set(projects.map((p) => p.description).filter(Boolean)),
+    ];
+    const tags = [
+      ...new Set(
+        projects
+          .flatMap((p) => Array.isArray(p.tags) ? p.tags : [])
+          .map((t) => t && String(t).trim())
+          .filter(Boolean)
+      ),
     ];
     if (select) {
       const defaultOption = document.createElement("option");
@@ -28,12 +38,34 @@ fetch(API_URL)
       });
     }
 
-    function renderCards(filter = "", append = false) {
+    if (toolSelect) {
+      const defaultTag = document.createElement("option");
+      defaultTag.value = "";
+      defaultTag.textContent = "All";
+      toolSelect.appendChild(defaultTag);
+
+      tags.forEach((tag) => {
+        const option = document.createElement("option");
+        option.value = tag;
+        option.textContent = tag;
+        toolSelect.appendChild(option);
+      });
+    }
+
+    function renderCards(filter = "", tagFilter = "", append = false) {
       !append ? ((container.innerHTML = ""), (currentIndex = 0)) : null;
 
-      const filteredProjects = filter
-        ? projects.filter((p) => p.description === filter)
-        : projects;
+      let filteredProjects = projects;
+      
+      if (filter) {
+        filteredProjects = filteredProjects.filter((p) => p.description === filter);
+      }
+      
+      if (tagFilter) {
+        filteredProjects = filteredProjects.filter((p) => 
+          Array.isArray(p.tags) && p.tags.includes(tagFilter)
+        );
+      }
       const nextProjects = filteredProjects.slice(
         currentIndex,
         currentIndex + BATCH_SIZE
@@ -66,10 +98,13 @@ fetch(API_URL)
 
     const urlParams = new URLSearchParams(window.location.search);
     const filterFromUrl = urlParams.get("filter") || "";
+    const tagFromUrl = urlParams.get("tag") || "";
     select ? (select.value = filterFromUrl) : null;
+    toolSelect ? (toolSelect.value = tagFromUrl) : null;
 
     currentFilter = filterFromUrl;
-    renderCards(filterFromUrl);
+    currentTagFilter = tagFromUrl;
+    renderCards(filterFromUrl, tagFromUrl);
 
     if (select) {
       select.addEventListener("change", () => {
@@ -82,16 +117,40 @@ fetch(API_URL)
         window.history.pushState({}, "", newUrl);
 
         currentFilter = selected;
-        renderCards(currentFilter);
+        renderCards(currentFilter, currentTagFilter);
+        updateRevealElements();
+      });
+    }
+    
+    if (toolSelect) {
+      toolSelect.addEventListener("change", () => {
+        const selectedTag = toolSelect.value;
+        console.log("Tag filter changed to:", selectedTag);
+        const newUrl = new URL(window.location);
+        selectedTag
+          ? newUrl.searchParams.set("tag", selectedTag)
+          : newUrl.searchParams.delete("tag");
+        window.history.pushState({}, "", newUrl);
+
+        currentTagFilter = selectedTag;
+        renderCards(currentFilter, currentTagFilter);
         updateRevealElements();
       });
     }
     const loadMore = () => {
       if (isLoading) return;
 
-      const filteredProjects = currentFilter
-        ? projects.filter((p) => p.description === currentFilter)
-        : projects;
+      let filteredProjects = projects;
+      
+      if (currentFilter) {
+        filteredProjects = filteredProjects.filter((p) => p.description === currentFilter);
+      }
+      
+      if (currentTagFilter) {
+        filteredProjects = filteredProjects.filter((p) => 
+          Array.isArray(p.tags) && p.tags.includes(currentTagFilter)
+        );
+      }
 
       if (currentIndex >= filteredProjects.length) {
         console.log("No more projects to load");
@@ -101,7 +160,7 @@ fetch(API_URL)
       console.log("Loading next batch", { currentIndex, BATCH_SIZE });
       isLoading = true;
 
-      renderCards(currentFilter, true);
+      renderCards(currentFilter, currentTagFilter, true);
 
       setTimeout(() => {
         isLoading = false;
@@ -109,7 +168,7 @@ fetch(API_URL)
       }, 50);
     };
 
-    renderCards(currentFilter);
+    renderCards(currentFilter, currentTagFilter);
 
     container.addEventListener("scroll", () => {
       if (

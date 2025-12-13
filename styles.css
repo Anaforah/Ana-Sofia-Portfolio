@@ -232,22 +232,38 @@ main {
 
 .form-container {
   display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  width: clamp(200px, 20%, 600px);
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
 }
 
-.form-container > label {
+.form-container > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.form-container label {
   color: var(--color-text-gray);
   font-size: var(--font-size-sm-mobile);
 }
 
-.form-container > select {
+.form-container select {
   all:unset;
   background-color: var(--color-bg-secondary);
   color: var(--color-text);
   border-radius: var(--radius-base);
   padding: 0.6rem 0.4rem;
+  cursor: pointer;
+}
+
+@media (max-width: 479px) {
+  .form-container {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
 }
 
 .title-filters-container {
@@ -381,7 +397,7 @@ footer {
   background-color: var(--color-primary);
   color: var(--color-bg);
   justify-content: center;
-  padding: 1rem 1.5rem;
+  padding: 4rem 1rem;
 }
 .contact-links-container,
 footer {
@@ -393,7 +409,32 @@ footer {
   background-color: var(--color-primary);
   color: var(--color-bg);
   justify-content: center;
-  padding: 1.25rem 1.5rem;
+  padding: 3rem 1rem;
+}
+
+footer h1 {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  footer {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem 2rem;
+  }
+  
+  footer h1 {
+    width: auto;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  
+  .contact-links-container {
+    justify-content: flex-start;
+  }
 }
 
 .contact-links-container a {
@@ -402,6 +443,11 @@ footer {
   color: var(--color-bg);
   font-weight: 400;
   transition: transform 0.3s ease, opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: var(--font-size-sm-mobile);
 }
 
 .contact-links-container a:hover {
@@ -475,10 +521,12 @@ footer {
   .contact-links-container a {
     display: inline-flex;
     align-items: center;
+    flex-direction: row;
+    gap: 0.5rem;
     font-size: var(--font-size-base-mobile);
   }
   .contact-links-container img {
-    width: 3rem;
+    width: 2rem;
   }
 
   .nav-bar {
@@ -509,5 +557,9 @@ footer {
   }
   .nav-bar a:hover {
     color: var(--color-primary-hover);
+  }
+  footer{
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
