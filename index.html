@@ -77,30 +77,44 @@
 
         <main id="work" class="reveal">
             <div class="title-filters-container">
-                <h3>Work</h3>
-                <div class="form-controllers-container">
-                    <form class="form-container">
-                        <div class="form-container-2">
-                        <label for="Scope">Scope</label>
-                        <select id="Scope" name="Scope" required>
-                            <option value="" disabled selected hidden>Select your Scope...</option>
-                        </select>
-                        </div>
-                        <div>
-                        <label for="Topic">Topic</label>
-                        <select id="Topic" name="Topic" required>
-                            <option value="" disabled selected hidden>Select your Topic...</option>
-                        </select>
-                        </div>
-                    </form>
-                    <div class="horizontal-scroll-container">
-                        <button class="scrollLeft" aria-label="Left">←</button>
-                        <button class="scrollRight" aria-label="Right">→</button>
-                    </div>
+                <div class="title-filters-header">
+                    <h3>Work</h3>
+                    <button
+                        class="filters-toggle"
+                        type="button"
+                        aria-label="Abrir filtros"
+                        aria-expanded="false"
+                        aria-controls="filters-panel"
+                    >
+                        <img src="assets/images/sliders-horizontal.svg" alt="" aria-hidden="true" />
+                        <span class="sr-only">Filters</span>
+                    </button>
                 </div>
             </div>
             <div class="card-grid"></div>
         </main>
+        <div class="filters-overlay" aria-hidden="true"></div>
+        <div class="form-controllers-container" id="filters-panel" aria-hidden="true">
+            <button class="filters-close" type="button" aria-label="Fechar filtros">&times;</button>
+            <form class="form-container">
+                <div class="form-container-2">
+                <label for="Scope">Scope</label>
+                <select id="Scope" name="Scope" required>
+                    <option value="" disabled selected hidden>Select your Scope...</option>
+                </select>
+                </div>
+                <div>
+                <label for="Topic">Topic</label>
+                <select id="Topic" name="Topic" required>
+                    <option value="" disabled selected hidden>Select your Topic...</option>
+                </select>
+                </div>
+            </form>
+            <div class="horizontal-scroll-container">
+                <button class="scrollLeft" aria-label="Left">←</button>
+                <button class="scrollRight" aria-label="Right">→</button>
+            </div>
+        </div>
         <footer id="contacts" class="reveal">
             <h1>Don’t be shy,<br />feel free to contact me</h1>
             <div class="contact-links-container">
