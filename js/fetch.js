@@ -24,33 +24,67 @@ fetch(API_URL)
           .filter(Boolean)
       ),
     ];
-    if (select) {
+
+    const getFilteredProjects = (filter = "", tagFilter = "") => {
+      let filteredProjects = projects;
+
+      if (filter) {
+        filteredProjects = filteredProjects.filter((p) => p.description === filter);
+      }
+
+      if (tagFilter) {
+        filteredProjects = filteredProjects.filter(
+          (p) => Array.isArray(p.tags) && p.tags.includes(tagFilter)
+        );
+      }
+
+      return filteredProjects;
+    };
+
+    const updateSelectOptions = (selectElement, values, selectedValue = "") => {
+      if (!selectElement) return "";
+
+      selectElement.innerHTML = "";
+
       const defaultOption = document.createElement("option");
       defaultOption.value = "";
       defaultOption.textContent = "All";
-      select.appendChild(defaultOption);
+      selectElement.appendChild(defaultOption);
 
-      descriptions.forEach((desc) => {
+      values.forEach((value) => {
         const option = document.createElement("option");
-        option.value = desc;
-        option.textContent = desc;
-        select.appendChild(option);
+        option.value = value;
+        option.textContent = value;
+        selectElement.appendChild(option);
       });
-    }
 
-    if (toolSelect) {
-      const defaultTag = document.createElement("option");
-      defaultTag.value = "";
-      defaultTag.textContent = "All";
-      toolSelect.appendChild(defaultTag);
+      const isSelectionAvailable = !selectedValue || values.includes(selectedValue);
+      selectElement.value = isSelectionAvailable ? selectedValue : "";
+      return selectElement.value;
+    };
 
-      tags.forEach((tag) => {
-        const option = document.createElement("option");
-        option.value = tag;
-        option.textContent = tag;
-        toolSelect.appendChild(option);
-      });
-    }
+    const updateUrlWithCurrentFilters = () => {
+      const newUrl = new URL(window.location);
+      currentFilter
+        ? newUrl.searchParams.set("filter", currentFilter)
+        : newUrl.searchParams.delete("filter");
+      currentTagFilter
+        ? newUrl.searchParams.set("tag", currentTagFilter)
+        : newUrl.searchParams.delete("tag");
+      window.history.pushState({}, "", newUrl);
+    };
+
+    const syncFilterOptions = () => {
+      const descriptionsWithMatch = descriptions.filter((description) =>
+        getFilteredProjects(description, currentTagFilter).length > 0
+      );
+      const tagsWithMatch = tags.filter(
+        (tag) => getFilteredProjects(currentFilter, tag).length > 0
+      );
+
+      currentFilter = updateSelectOptions(select, descriptionsWithMatch, currentFilter);
+      currentTagFilter = updateSelectOptions(toolSelect, tagsWithMatch, currentTagFilter);
+    };
 
     function renderCards(filter = "", tagFilter = "", append = false) {
       !append ? ((container.innerHTML = ""), (currentIndex = 0)) : null;
@@ -99,24 +133,20 @@ fetch(API_URL)
     const urlParams = new URLSearchParams(window.location.search);
     const filterFromUrl = urlParams.get("filter") || "";
     const tagFromUrl = urlParams.get("tag") || "";
-    select ? (select.value = filterFromUrl) : null;
-    toolSelect ? (toolSelect.value = tagFromUrl) : null;
 
     currentFilter = filterFromUrl;
     currentTagFilter = tagFromUrl;
-    renderCards(filterFromUrl, tagFromUrl);
+    syncFilterOptions();
+    updateUrlWithCurrentFilters();
 
     if (select) {
       select.addEventListener("change", () => {
         const selected = select.value;
         console.log("Filter changed to:", selected);
-        const newUrl = new URL(window.location);
-        selected
-          ? newUrl.searchParams.set("filter", selected)
-          : newUrl.searchParams.delete("filter");
-        window.history.pushState({}, "", newUrl);
 
         currentFilter = selected;
+        syncFilterOptions();
+        updateUrlWithCurrentFilters();
         renderCards(currentFilter, currentTagFilter);
         updateRevealElements();
       });
@@ -126,13 +156,10 @@ fetch(API_URL)
       toolSelect.addEventListener("change", () => {
         const selectedTag = toolSelect.value;
         console.log("Tag filter changed to:", selectedTag);
-        const newUrl = new URL(window.location);
-        selectedTag
-          ? newUrl.searchParams.set("tag", selectedTag)
-          : newUrl.searchParams.delete("tag");
-        window.history.pushState({}, "", newUrl);
 
         currentTagFilter = selectedTag;
+        syncFilterOptions();
+        updateUrlWithCurrentFilters();
         renderCards(currentFilter, currentTagFilter);
         updateRevealElements();
       });
@@ -140,17 +167,7 @@ fetch(API_URL)
     const loadMore = () => {
       if (isLoading) return;
 
-      let filteredProjects = projects;
-      
-      if (currentFilter) {
-        filteredProjects = filteredProjects.filter((p) => p.description === currentFilter);
-      }
-      
-      if (currentTagFilter) {
-        filteredProjects = filteredProjects.filter((p) => 
-          Array.isArray(p.tags) && p.tags.includes(currentTagFilter)
-        );
-      }
+      const filteredProjects = getFilteredProjects(currentFilter, currentTagFilter);
 
       if (currentIndex >= filteredProjects.length) {
         console.log("No more projects to load");
