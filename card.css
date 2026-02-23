@@ -67,7 +67,7 @@
 }
 
 .tags span {
-    background: var(--color-text-gray);
+    background: color-mix(in srgb, var(--color-primary) 60%, transparent);
     color: var(--color-bg);
     padding: 0.3rem 0.8rem;
     border-radius: var(--radius-base);
