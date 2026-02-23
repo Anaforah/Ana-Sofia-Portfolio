@@ -1,10 +1,10 @@
 :root {
-  --color-bg: #000000;
-  --color-bg-secondary: #313131;
+  --color-bg: #02050A;
+  --color-bg-secondary: #01101B;
   --color-text: #e7e7e7;
-  --color-primary: #facc15;
-  --color-primary-hover: #ffe670;
-  --color-text-gray: #a5a5a5;
+  --color-primary: #FFB915;
+  --color-primary-hover: #4376AB;
+  --color-text-gray: #6F6F6F;
   --shadow-color: rgba(231, 231, 231, 0.3);
 
   --font-base: "Geist", sans-serif;
@@ -208,7 +208,7 @@ footer.reveal-on-load.active {
   color: var(--color-bg);
   text-decoration: none;
   border-radius: var(--radius-base);
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
   transition: background-color 0.3s ease;
   width: fit-content;
@@ -343,9 +343,11 @@ main {
   pointer-events: auto;
 }
 
+.filters-toggle:hover,
 .filters-toggle:active,
 .filters-toggle.active {
   background-color: var(--color-primary-hover);
+  color: var(--color-text);
   transform: translateY(2px);
 }
 
@@ -579,6 +581,7 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  padding-top: 1.5rem;
 }
 
 footer {
