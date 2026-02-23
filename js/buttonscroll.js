@@ -1,7 +1,7 @@
-const elements = ["scrollUp", "scrollDown", "scrollLeft", "scrollRight"].map((cls) =>
+const elements = ["scrollUp", "scrollDown"].map((cls) =>
     document.querySelector(`.${cls}`)
 );
-const [scrollUpBtn, scrollDownBtn, scrollLeftBtn, scrollRightBtn] = elements
+const [scrollUpBtn, scrollDownBtn] = elements
 
 const scrollContainer = document.querySelector(".card-grid")
 // Include About section by id `#about` between header and main
@@ -53,27 +53,6 @@ scrollDownBtn.addEventListener("click", () => {
     const nextIdx = Math.min(sections.length - 1, idx + 1);
     scrollToSection(sections[nextIdx]);
 });
-
-const scrollByAmount = (dir) =>
-    scrollContainer.scrollBy({
-        left: dir * scrollContainer.clientWidth * 0.9,
-        behavior: "smooth",
-    });
-
-scrollLeftBtn.addEventListener("click", () => scrollByAmount(-1))
-scrollRightBtn.addEventListener("click", () => scrollByAmount(1))
-
-const updateHorizontalButtons = () => {
-    const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth
-    toggle(scrollLeftBtn, scrollContainer.scrollLeft > 0)
-    toggle(scrollRightBtn, scrollContainer.scrollLeft < maxScrollLeft - 5)
-};
-
-scrollContainer.addEventListener("scroll", updateHorizontalButtons)
-scrollContainer.addEventListener("resize", updateHorizontalButtons)
-
-window.addEventListener("load", () => setTimeout(updateHorizontalButtons, 200))
-scrollContainer.querySelectorAll("img").forEach((img) => img.addEventListener("load", updateHorizontalButtons))
 
 const isInViewport = (el, triggerFactor = 0.85) => {
     const rect = el.getBoundingClientRect()

@@ -5,6 +5,8 @@
     width: 85vw;
     margin: 0 auto;
     padding: 1rem 0 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .card {

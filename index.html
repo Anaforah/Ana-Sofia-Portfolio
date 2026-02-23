@@ -87,12 +87,13 @@
                         aria-controls="filters-panel"
                     >
                         <img src="assets/images/sliders-horizontal.svg" alt="" aria-hidden="true" />
-                        <span class="sr-only">Filters</span>
+                        <span class="filters-toggle-text">Filters</span>
                     </button>
                 </div>
             </div>
             <div class="form-controllers-container" id="filters-panel" aria-hidden="true">
                 <button class="filters-close" type="button" aria-label="Fechar filtros">&times;</button>
+                <h3 class="filters-modal-title">Choose filters</h3>
                 <form class="form-container">
                     <div class="form-container-2">
                     <label for="Scope">Scope</label>
@@ -107,10 +108,6 @@
                     </select>
                     </div>
                 </form>
-                <div class="horizontal-scroll-container">
-                    <button class="scrollLeft" aria-label="Left">←</button>
-                    <button class="scrollRight" aria-label="Right">→</button>
-                </div>
             </div>
             <div class="card-grid"></div>
         </main>
