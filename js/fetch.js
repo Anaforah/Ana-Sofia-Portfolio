@@ -170,13 +170,18 @@ fetch(API_URL)
 
     renderCards(currentFilter, currentTagFilter);
 
-    container.addEventListener("scroll", () => {
-      if (
-        container.scrollLeft + container.clientWidth >=
-        container.scrollWidth / 2
-      ) {
-        console.log("Near end of scroll, loading more");
+    const loadMoreOnPageScroll = () => {
+      const threshold = 220;
+      const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - threshold;
+
+      if (nearBottom) {
+        console.log("Near end of page, loading more");
         loadMore();
       }
-    });
+    };
+
+    window.addEventListener("scroll", loadMoreOnPageScroll, { passive: true });
+    window.addEventListener("resize", loadMoreOnPageScroll);
+
+    setTimeout(loadMoreOnPageScroll, 100);
   });

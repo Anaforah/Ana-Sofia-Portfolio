@@ -539,10 +539,10 @@ li {
     justify-content: space-between;
     align-items: flex-end;
     background: transparent;
-    color: var(--color-text);
-    width: 100%;
+    width: 85vw;
     height: auto;
     padding: 0;
+    margin: 2rem auto 0;
     gap: 1rem;
     transform: none;
     box-shadow: none;
