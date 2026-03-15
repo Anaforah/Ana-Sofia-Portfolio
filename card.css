@@ -102,12 +102,10 @@
 
 .buttons a:hover {
     background: var(--color-primary-hover);
-    color: var(--color-text);
 }
 
 .buttons a.secondary:hover {
     background: var(--color-primary-hover);
-    color: var(--color-text);
 }
 
 small {
