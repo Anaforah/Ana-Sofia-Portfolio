@@ -1,10 +1,10 @@
 :root {
-  --color-bg: #02050A;
-  --color-bg-secondary: #01101B;
+  --color-bg: #000;
+  --color-bg-secondary: #313131;
   --color-text: #e7e7e7;
-  --color-primary: #FFB915;
-  --color-primary-hover: #4376AB;
-  --color-text-gray: #6F6F6F;
+  --color-primary: #facc15;
+  --color-primary-hover: #ffe670;
+  --color-text-gray: #a5a5a5;
   --shadow-color: rgba(231, 231, 231, 0.3);
 
   --font-base: "Geist", sans-serif;
